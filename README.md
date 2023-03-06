@@ -2,6 +2,15 @@
 
 Credit: @x-yuri for their great [stackoverflow answer](https://stackoverflow.com/a/62096626)
 
+## Set up project
+
+1. Initialize a git repo in project_a `cd project_a && git init`
+1. Make a commit in git `git add -A && git commit -m "Project_a: Initial commit"`
+1. Return to root of project `cd ..`
+1. Initialize a git repo in project_b `cd project_b && git init`
+1. Make a commit in git `git add -A && git commit -am "Project_b: Initial commit"`
+1. Return to root of project `cd ..`
+
 
 ## Scenario 1
 We want to keep project_b and merge the history of project_a.
@@ -12,17 +21,17 @@ We want to keep project_b and merge the history of project_a.
 cd project_b
 ```
 
-1. Add the git repo from project_a and fetch the remote branch
+2. Add the git repo from project_a and fetch the remote branch
 ```
 git remote add -f <name> ../project_a
 ```
 
-1. Merge the history from the remote added in the previous step
+3. Merge the history from the remote added in the previous step
 ```
-git merge --allow-unrelated-histories <name>/master
+git merge --allow-unrelated-histories <name>/main
 ```
 
-1. Remove the remote of the repo you have added
+4. Remove the remote of the repo you have added
 ```
 git remote remove <name>
 ```
@@ -45,29 +54,29 @@ brew install git-filter-repo
     ```
     2. Update the path to what you want
     ```
-    git filter-repo --path-rename [old_path]:project_a
+    git filter-repo --path-rename [old_path]:project_a/
     ```
     3. Verify that the path is what you want `diff --git a/project_a/... b/project_b/...`
     ```
     git log --oneline
     git show <commit_id>
     ```
-1. Switch into the repo that you want to keep
+2. Switch into the repo that you want to keep
 ```
 cd project_b
 ```
 
-1. Add the git repo from project_a and fetch the remote branch
+3. Add the git repo from project_a and fetch the remote branch
 ```
-git remote add -r <name> ../project_a
+git remote add -f <name> ../project_a
 ```
 
-1. Merge the history from the remote added in the previous step
+4. Merge the history from the remote added in the previous step
 ```
 git merge --allow-unrelated-histories <name>/main
 ```
 
-1. Remove the remote of the repo you have added
+5. Remove the remote of the repo you have added
 ```
 git remote remove <name>
 ```
